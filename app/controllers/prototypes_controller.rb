@@ -29,7 +29,7 @@ class PrototypesController < ApplicationController
   def update
     prototype = Prototype.find(params[:id])
     if prototype.user_id == current_user.id
-      prototype.update(prototype_params)
+      prototype.update(update_prototype_params)
       redirect_to ({ action: "show"}), notice: '更新しました'
     end
   end
@@ -47,6 +47,16 @@ class PrototypesController < ApplicationController
       :concept,
       :user_id,
       captured_images_attributes: [:content, :status]
+    )
+  end
+
+  def update_prototype_params
+    params.require(:prototype).permit(
+      :title,
+      :catch_copy,
+      :concept,
+      :user_id,
+      captured_images_attributes: [:content, :status, :_destroy, :id]
     )
   end
 end
