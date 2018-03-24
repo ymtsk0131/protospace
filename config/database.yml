@@ -47,6 +47,6 @@ test:
 production:
   url: <%= ENV['DATABASE_URL'] %>
   <<: *default
-  database: protospace-in-dev_production
-  username: protospace-in-dev
-  password: <%= ENV['PROTOSPACE-IN-DEV_DATABASE_PASSWORD'] %>
+  database: dfciqjurac7htb
+  username: xxootxmwrdvnhr
+  password: fb842e3f3a964899bce1a84add7f02845b6cf96d311a104ea51ab2454d4507f4
