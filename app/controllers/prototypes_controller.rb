@@ -30,6 +30,7 @@ class PrototypesController < ApplicationController
     prototype = Prototype.find(params[:id])
     if prototype.user_id == current_user.id
       prototype.update(prototype_params)
+      redirect_to ({ action: "show"}), notice: '更新しました'
     end
   end
 
