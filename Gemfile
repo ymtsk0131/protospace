@@ -20,7 +20,7 @@ gem 'rmagick'
 # sqliteを利用しない
 gem 'sqlite3', group: [:development, :test]
 # pgを利用する
-gem 'pg', group: :production
+gem 'pg', '~> 0.21.0',group: :production
 
 group :development, :test do
   gem 'byebug'
