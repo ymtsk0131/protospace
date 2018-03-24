@@ -8,6 +8,8 @@
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
+          .edit
+            = link_to '編集', edit_prototype_path, method: :get
           .proto-user
             by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
