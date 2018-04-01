@@ -19,13 +19,21 @@
               = @prototype.user.position
     - if user_signed_in?
       .like-area
-        = image_tag('icon_heart.svg', class: 'img-like')
-        LIKE
-        %span.like-count
-          = @prototype.get_like_count
+        - if like = @prototype.likes.find_by("user_id=#{current_user.id}")
+          %div{id: "#{like.id}", class: "like-true"}
+            = image_tag('icon_heart_true.svg', class: 'img-like')
+            LIKE
+            %span.like-count
+              = @prototype.get_like_count
+        - else
+          .like-false
+            = image_tag('icon_heart_false.svg', class: 'img-like')
+            LIKE
+            %span.like-count
+              = @prototype.get_like_count
     - else
       .like-area.disable
-        = image_tag('icon_heart.svg', class: 'img-like')
+        = image_tag('icon_heart_false.svg', class: 'img-like')
         LIKE
         %span.like-count
           = @prototype.get_like_count

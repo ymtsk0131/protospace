@@ -643,10 +643,18 @@ body {
   border-color: #CCC;
   float: right;
   padding: 10px 14px;
-}
 
-.img-like{
-  width: 18px;
-  height: 15px;
-  margin-right: 5px;
+  .img-like{
+    width: 18px;
+    height: 15px;
+    margin-right: 5px;
+  }
+
+  .like-true {
+
+  }
+
+  .like-false {
+
+  }
 }
