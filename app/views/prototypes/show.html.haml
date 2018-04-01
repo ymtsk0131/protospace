@@ -28,6 +28,7 @@
         = image_tag('icon_heart.svg', class: 'img-like')
         LIKE
         %span.like-count
+          = @prototype.get_like_count
   .row
     .col
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
