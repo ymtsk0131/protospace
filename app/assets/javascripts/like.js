@@ -1,6 +1,10 @@
 $(function(){
 
-  $('.like-area').on('click', function(){
+  $(document).on('click', '.like-area', function(){
+  // $('.like-area').on('click', function(){
+    if($(this).hasClass('disable')){
+      return;
+    }
     var url = document.URL + '/likes';
 
     $.ajax({
@@ -9,7 +13,7 @@ $(function(){
       dataType: 'json'
     })
     .done(function(data){
-      
+
     })
     .fail(function(response){
 
