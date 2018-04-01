@@ -1,7 +1,6 @@
 $(function(){
 
   $(document).on('click', '.like-area', function(){
-  // $('.like-area').on('click', function(){
     if($(this).hasClass('disable')){
       return;
     }
@@ -13,7 +12,7 @@ $(function(){
       dataType: 'json'
     })
     .done(function(data){
-
+      $('.like-count').text(data.count);
     })
     .fail(function(response){
 

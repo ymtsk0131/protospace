@@ -3,6 +3,8 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @like.save
+    @count = Like.where("prototype_id = #{params[:prototype_id]}").count
+
     respond_to do |format|
       format.html
       format.json
