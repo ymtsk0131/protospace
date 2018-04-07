@@ -419,6 +419,11 @@ body {
     position: relative;
     margin-bottom: 20px;
 
+    .main-thumbnail-preview {
+      text-align: center;
+      height: 100%;
+    }
+
     input {
       position: absolute;
       left: 0;
@@ -440,6 +445,7 @@ body {
       background: image-url("noimage.png") #fff no-repeat center center;
       height: 200px;
       position: relative;
+      text-align: center;
 
       input {
         position: absolute;
@@ -451,6 +457,12 @@ body {
         opacity: 0;
         filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
         cursor: pointer;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 200px;
+        margin: 0 auto;
       }
     }
 
