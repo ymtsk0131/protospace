@@ -50,12 +50,11 @@ $(function(){
 
 $(function(){
   //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
-  $('#prototype_captured_images_attributes_1_content').on('change', 'input[type="file"]', function(e) {
+  $(document).on('change', '.image-upload-1', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview = $(".sub-thumbnail-preview");
+        $preview = $(".sub-thumbnail-preview-1");
         t = this;
-
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
       return false;
@@ -70,7 +69,7 @@ $(function(){
         $preview.append($('<img>').attr({
                   src: e.target.result,
                   width: "100px",
-                  class: ".sub-thumbnail-preview",
+                  class: ".sub-thumbnail-preview-1",
                   title: file.name
               }));
       };
