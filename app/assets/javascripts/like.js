@@ -30,11 +30,11 @@ $(function(){
         $(".like-false").addClass('like-true');
         $(".like-false").attr('id', data.like_id);
         $(".like-false").removeClass('like-false');
-        $(".img-like").attr('src', "/assets/icon_heart_true.svg");
+        $(".img-like").attr('src', image_path("icon_heart_true.svg"));
       } else {
         $(".like-true").addClass('like-false');
         $(".like-true").removeClass('like-true');
-        $(".img-like").attr('src', "/assets/icon_heart_false.svg");
+        $(".img-like").attr('src', image_path("icon_heart_false.svg"));
       }
     })
     .fail(function(response){
