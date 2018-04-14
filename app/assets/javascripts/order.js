@@ -37,7 +37,7 @@ $(function(){
     $.ajax({
       url: '/prototypes',
       type: 'GET',
-      data: { order_by: order_by },
+      data: { order_by: order_by, page: 1 },
       dataType: 'json'
     })
     .done(function(prototypes){
