@@ -11,9 +11,9 @@
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
-            = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
+            = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix img-existed', style: "margin: 0 auto;")
+            .main-thumbnail-preview
             = f.fields_for :captured_images do |image|
-              %img
               = image.file_field :content
               = image.hidden_field :status, value: "main"
         .col-md-12
@@ -21,9 +21,12 @@
           %ul.proto-sub-list.list-group
             - 3.times do |i|
               %li.list-group-item.col-md-4
-                .image-upload
+                %div{ class: "image-upload image-upload-#{i + 1}" }
+                / サブ画像が最大枚数登録されていない場合は元の画像の読み込みをスキップする
+                  - if image = @prototype.captured_images[i+1]
+                    = image_tag(image.content, class: "img-responsive img-existed-#{i + 1}")
+                  %div{ class: "sub-thumbnail-preview-#{i + 1}" }
                   = f.fields_for :captured_images do |image|
-                    %img
                     = image.file_field :content
                     = image.hidden_field :status, value: "sub"
       .row.proto-description
