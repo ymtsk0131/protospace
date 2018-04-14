@@ -11,9 +11,10 @@
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
+            = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
             = f.fields_for :captured_images do |image|
               %img
-              = image.file_field :content, required: true
+              = image.file_field :content
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
