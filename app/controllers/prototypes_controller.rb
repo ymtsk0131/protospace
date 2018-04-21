@@ -20,6 +20,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    @comments = @prototype.comments
   end
 
   def destroy
