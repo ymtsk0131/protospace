@@ -41,6 +41,7 @@ $(function(){
                   class: ".main-thumbnail-preview",
                   title: file.name
               }));
+        $(".img-existed").css({ "display": "none" });
       };
     })(file);
 
@@ -57,6 +58,7 @@ $(function() {
 function previewSubImage(label) {
   var eventClassName = ".image-upload-" + label;
   var previewClassName = ".sub-thumbnail-preview-" + label;
+  var existedImageClassName = ".img-existed-" + label;
 
   //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
   $(document).on('change', eventClassName, function(e) {
@@ -74,7 +76,6 @@ function previewSubImage(label) {
       return function(e) {
         //既存のプレビューを削除
         $preview.empty();
-        // debugger;
         // .prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   src: e.target.result,
@@ -82,6 +83,7 @@ function previewSubImage(label) {
                   class: previewClassName,
                   title: file.name
               }));
+        $(existedImageClassName).css({ "display": "none" });
       };
     })(file);
 
