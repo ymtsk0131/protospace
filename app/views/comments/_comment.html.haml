@@ -1,8 +1,8 @@
 .comment
   .comment__avatar
-    = image_tag current_user.avatar, size: "64x64"
+    = image_tag comment.user.avatar, size: "64x64"
   .comment__right
     .comment__right__username
-      = current_user.name
+      = comment.user.name
     %p.comment__right__text
       = comment.comment

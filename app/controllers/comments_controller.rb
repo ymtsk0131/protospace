@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to prototype_path(params[:prototype_id])
-    else
+    @comment.save
+
+    @comments = Comment.where(prototype_id: params[:prototype_id])
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
