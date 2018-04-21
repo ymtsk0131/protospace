@@ -61,3 +61,15 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
+  .row.proto-comments
+    .proto-comments__show
+      %h4.proto-comments__show--label
+        Comments (#{@comments.size})
+      .comments
+        = render partial: "comments/comment", collection: @comments
+    .proto-comments__write
+      = form_for :comment, url: prototype_comments_path(@prototype), remote: true, html: { id: "new_comment" } do |f|
+        %h4.proto-comments__write--label
+          Write a comment
+        = f.text_area :comment, class: "proto-comments__write-text form-control", required: true, rows: "3", disabled: !user_signed_in?
+        = f.submit "COMMENT", class: "proto-comments__write-submit btn btn-primary", disabled: !user_signed_in?

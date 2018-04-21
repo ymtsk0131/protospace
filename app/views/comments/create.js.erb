@@ -1,0 +1,4 @@
+$('.comments').empty();
+$('.comments').html("<%= j(render partial: 'comment', collection: @comments) %>");
+$('.proto-comments__show--label').text("Comments (<%= @comments.size %>)")
+$('#comment_comment').val("");
