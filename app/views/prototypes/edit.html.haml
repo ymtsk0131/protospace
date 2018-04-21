@@ -22,7 +22,7 @@
             - 3.times do |i|
               %li.list-group-item.col-md-4
                 %div{ class: "image-upload image-upload-#{i + 1}" }
-                / サブ画像が最大枚数登録されていない場合は元の画像の読み込みをスキップする
+                  / サブ画像が最大枚数登録されていない場合は元の画像の読み込みをスキップする
                   - if image = @prototype.captured_images[i+1]
                     = image_tag(image.content, class: "img-responsive img-existed-#{i + 1}")
                   %div{ class: "sub-thumbnail-preview-#{i + 1}" }
