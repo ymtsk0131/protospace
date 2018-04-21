@@ -7,9 +7,9 @@
     .row
       %ul.nav.nav-pills.col-lg-11
         %li.btn-default.btn-order.btn-popular
-          Popular
+          = link_to "Popular", prototypes_path(order_by: "Popular"), remote: true
         %li.btn-default.btn-order.btn-newest
-          Newest
+          = link_to "Newest", prototypes_path(order_by: "Newest"), remote: true
       = link_to "VIEW TAGS", "#", class: "btn btn-default col-lg-1"
 
 .container.proto-list
@@ -17,4 +17,4 @@
     = render partial: 'prototypes/prototype', collection: @prototypes
 
 .text-center
-  = paginate(@prototypes)
+  = paginate(@prototypes, remote: true, params: {order_by: "Newest"})

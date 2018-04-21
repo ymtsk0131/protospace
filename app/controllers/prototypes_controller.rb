@@ -1,22 +1,24 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
+
   def index
     if params[:order_by].present?
-      session[:order_by] = params[:order_by]
-    end
-    if session[:order_by] == "popular"
-      prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
-      ordered_prototypes = prototype_ids.map { |id| Prototype.find(id) }
-      prototypes = Kaminari.paginate_array(ordered_prototypes)
-    elsif session[:order_by] == "newest"
-      prototypes = Prototype.order('created_at DESC')
+      if params[:order_by] == "Popular"
+        prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
+        ordered_prototypes = prototype_ids.map { |id| Prototype.find(id) }
+        prototypes = Kaminari.paginate_array(ordered_prototypes)
+      elsif params[:order_by] == "Newest"
+        prototypes = Prototype.order('created_at DESC')
+      end
     else
       prototypes = Prototype.all.order('created_at DESC')
     end
+
+    @order_by = params[:order_by]
     @prototypes = prototypes.page(params[:page]).per(4)
     respond_to do |format|
       format.html
-      format.json
+      format.js
     end
   end
 
