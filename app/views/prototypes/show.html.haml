@@ -63,12 +63,12 @@
           %a{href: "#", class: "btn btn-default"} wireframe
   .row.proto-comments
     .proto-comments__show
-      .proto-comments__show--label
+      %h4.proto-comments__show--label
         Comments (#{@comments.size})
       = render partial: "comments/comment", collection: @comments
     .proto-comments__write
-      .proto-comments__write--label
+      %h4.proto-comments__write--label
         Write a comment
       = form_for :comment, url: prototype_comments_path(@prototype) do |f|
-        = f.text_field :comment, class: "proto-comments__write-text", required: true
-        = f.submit "COMMENT", class: "proto-comments__write-submit"
+        = f.text_area :comment, class: "proto-comments__write-text form-control", required: true, rows: "3"
+        = f.submit "COMMENT", class: "proto-comments__write-submit btn btn-primary"

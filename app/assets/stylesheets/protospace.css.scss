@@ -670,3 +670,52 @@ body {
 
   }
 }
+.proto-comments {
+  margin-left: -15px;
+  margin-right: -15px;
+
+  &__show {
+    &--label {
+      padding-bottom: 20px;
+    }
+  }
+
+  .comment {
+    clear: both;
+    margin-bottom: 30px;
+
+    &__avatar {
+      padding-right: 10px;
+      display: table-cell;
+    }
+
+    &__right {
+      display: table-cell;
+      vertical-align: top;
+
+      &__username {
+        margin-top: 0;
+        padding-bottom: 20px;
+      }
+      &__text {
+        margin: 0 0 10px;
+      }
+
+    }
+  }
+
+  &__write {
+    clear: both;
+
+    &--label {
+
+    }
+    &-text {
+      width: 100%;
+      // height: 4em;
+    }
+    &-submit {
+
+    }
+  }
+}
