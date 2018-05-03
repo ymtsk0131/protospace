@@ -11,7 +11,7 @@ class PrototypesController < ApplicationController
         prototypes = Prototype.order('created_at DESC')
       end
     else
-      prototypes = Prototype.order('RAND()')
+      prototypes = Prototype.random_order(params[:seed])
     end
 
     @order_by = params[:order_by]

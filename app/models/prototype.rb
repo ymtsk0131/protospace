@@ -26,4 +26,12 @@ class Prototype < ActiveRecord::Base
   def get_like_count
     self.likes.count
   end
+
+  def self.random_order(seed)
+    if Rails.env == 'production'
+      self.select("setseed(#{seed})").order('random()') # pg
+    else
+      self.order("RAND(#{seed})") # mysql
+    end
+  end
 end
