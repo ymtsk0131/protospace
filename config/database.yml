@@ -53,7 +53,7 @@ production:
   adapter: postgresql
   encoding: utf8
   pool: 5
-  database: dfciqjurac7htb
+  database: <%= ENV['DATABASE_ID'] %>
   url: <%= ENV['DATABASE_URL'] %>
-  username: xxootxmwrdvnhr
-  password: fb842e3f3a964899bce1a84add7f02845b6cf96d311a104ea51ab2454d4507f4
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
