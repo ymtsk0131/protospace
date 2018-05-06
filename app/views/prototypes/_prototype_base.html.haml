@@ -1,0 +1,14 @@
+.thumbnail
+  = link_to image_tag(prototype.set_main_thumbnail), prototype_path(prototype)
+  .caption
+    %h3
+      = prototype.title
+    .proto-meta
+      .proto-user
+        = link_to prototype.user.name, user_path(prototype.user)
+      .proto-posted
+        = prototype.posted_date
+    %ul.proto-tag-list.list-inline
+      - prototype.tags.each do |tag|
+        %li
+          = link_to tag.name, tag_path(tag.id), class: "btn btn-default"
