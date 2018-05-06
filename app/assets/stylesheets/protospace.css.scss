@@ -655,6 +655,7 @@ body {
   color: #a94442;
 }
 
+/* --like ------------------------------------ */
 .like-area{
   min-width: 100px;
   height: 39px;
@@ -679,6 +680,8 @@ body {
 
   }
 }
+
+/* --comment ------------------------------------ */
 .proto-comments {
   margin-left: -15px;
   margin-right: -15px;
@@ -728,4 +731,21 @@ body {
 
     }
   }
+}
+
+/* --tag ------------------------------------ */
+.thumbnail .btn-tag{
+  width: 100%;
+  height: 50px;
+  background-color: #eee;
+  padding: 5px 5px 3px;
+  font-size: 2.0rem;
+  font-weight: 300;
+  color: #999;
+}
+
+.tag-list-number{
+  display: block;
+  margin: 0 -2px -2px;
+  font-size: 1.3rem;
 }
