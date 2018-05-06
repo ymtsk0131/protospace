@@ -4,5 +4,5 @@
       = tag.name
   .tag-meta
     = link_to tag_path(tag.id), class: "label label-default tag-list-number" do
-      tag_count
+      = tag.get_prototype_count
       %i Projects
