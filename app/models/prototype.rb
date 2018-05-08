@@ -29,7 +29,8 @@ class Prototype < ActiveRecord::Base
 
   def self.random_order(seed)
     if Rails.env == 'production'
-      self.select("setseed(#{seed})").order('random()') # pg
+      self.select("setseed(#{seed})")
+      self.order('random()') # pg
     else
       self.order("RAND(#{seed})") # mysql
     end
