@@ -44,6 +44,7 @@ class PrototypesController < ApplicationController
   def destroy
     if @prototype.user_id == current_user.id
       @prototype.destroy
+      redirect_to ({ action: "index"}), notice: '削除しました'
     end
   end
 
