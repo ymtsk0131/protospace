@@ -7,14 +7,20 @@ class Prototype < ActiveRecord::Base
   has_many :tags, through: :prototype_tags
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
+  accepts_nested_attributes_for :tags, reject_if: :reject_tags
 
   validates :title,
             :catch_copy,
             :concept,
             presence: true
+  validates :prototype_tags, length: { maximum: 3 }
 
   def reject_sub_images(attributed)
     attributed['content'].blank?
+  end
+
+  def reject_tags(attributed)
+    attributed['name'].blank?
   end
 
   def set_main_thumbnail
