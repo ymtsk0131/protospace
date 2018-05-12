@@ -5,8 +5,8 @@
     .col-sm-12.proto-content
       = render partial: 'tags/tag', locals: { tag: @tag }
 
-#masonry-container.container.proto-list.masonry{ style: "position: relative; height: 393px; width: 280px;"}
+#masonry-container.container.proto-list
   .row
-    .proto-content.masonry-box.col3.centerd.masonry-brick{ style: "position: absolute; top: 0px; left: 0px;"}
-      - @tag.prototype_tags.each do |prototype_tag|
+    - @tag.prototype_tags.each do |prototype_tag|
+      .proto-content.masonry-box.col-sm-4.col-md-3
         = render partial: 'prototypes/prototype_base', locals: { prototype: prototype_tag.prototype }
