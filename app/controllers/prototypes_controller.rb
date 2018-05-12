@@ -31,10 +31,23 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
+      create_tags
       redirect_to :root, notice: 'New prototype was successfully created'
     else
       redirect_to ({ action: 'new' }), alert: 'New prototype was unsuccessfully created'
      end
+  end
+
+  def create_tags
+    tag_array = tag_params
+    3.times do |i|
+      if tag_array[i.to_s]["name"].blank?
+        next
+      end
+
+      tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
+      PrototypeTag.create(prototype_id: @prototype.id, tag_id: tag.id)
+    end
   end
 
   def show
@@ -49,12 +62,36 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+    unless @prototype.tags.count == 3
+      3.times do |i|
+        unless @prototype.tags[i]
+          @prototype.tags.build
+        end
+      end
+    end
   end
 
   def update
     if @prototype.user_id == current_user.id
       @prototype.update(update_prototype_params)
+      update_tags
       redirect_to ({ action: "show"}), notice: '更新しました'
+    end
+  end
+
+  def update_tags
+    tag_array = tag_params
+    3.times do |i|
+      if @prototype.tags[i]
+        if @prototype.tags[i].name != tag_array[i.to_s]["name"]
+          tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
+          prototype_tag = PrototypeTag.find_by(prototype_id: @prototype.id, tag_id: @prototype.tags[i].id)
+          prototype_tag.update(tag_id: tag.id)
+        end
+      else
+        tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
+        PrototypeTag.create(prototype_id: @prototype.id, tag_id: tag.id)
+      end
     end
   end
 
@@ -70,9 +107,12 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:id, :content, :status],
-      tags_attributes: [:name]
+      captured_images_attributes: [:id, :content, :status]
     )
+  end
+
+  def tag_params
+    params.require(:prototype).permit(tags_attributes: [:name])[:tags_attributes]
   end
 
   def update_prototype_params

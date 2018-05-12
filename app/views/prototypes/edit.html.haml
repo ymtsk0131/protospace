@@ -36,5 +36,12 @@
         .col-md-12
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
+        .col-md-12
+          - placeholders = ['Web', 'Rails', 'UI/UX']
+          %h4 Tag List
+          .row
+            = f.fields_for :tags do |tag|
+              .col-md-3
+                = tag.text_field :name, placeholder: "ex) #{placeholders[tag.index]}" ,required: tag.index == 0
       .row.text-center.proto-btn
         = f.submit "EDIT", id: "button", class: "btn btn-lg btn-primary btn-block"

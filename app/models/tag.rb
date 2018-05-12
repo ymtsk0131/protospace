@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
+  before_save { name.upcase! }
   has_many :prototype_tags
   has_one :prototype, through: :prototype_tags
 

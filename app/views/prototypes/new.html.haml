@@ -39,6 +39,6 @@
             - ['Web', 'Rails', 'UI/UX'].each_with_index do |placeholder, index|
               = f.fields_for :tags do |tag|
                 .col-md-3
-                  = tag.text_field :name, placeholder: "ex) #{placeholder}"
+                  = tag.text_field :name, placeholder: "ex) #{placeholder}", require: index == 0
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
