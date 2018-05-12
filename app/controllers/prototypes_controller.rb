@@ -41,11 +41,12 @@ class PrototypesController < ApplicationController
   def create_tags
     tag_array = tag_params
     3.times do |i|
-      if tag_array[i.to_s]["name"].blank?
+      name = tag_array[i.to_s]["name"]
+      if name.blank?
         next
       end
 
-      tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
+      tag = Tag.find_or_create_by(name: name)
       PrototypeTag.create(prototype_id: @prototype.id, tag_id: tag.id)
     end
   end
@@ -82,14 +83,23 @@ class PrototypesController < ApplicationController
   def update_tags
     tag_array = tag_params
     3.times do |i|
+      name = tag_array[i.to_s]["name"]
+      if name.blank?
+        if @prototype.prototype_tags[i]
+          @prototype.prototype_tags[i].destroy
+          @prototype.tags[i].destroy if @prototype.tags[i].prototype_tags.count == 0
+        end
+
+        next
+      end
+
+      tag = Tag.find_or_create_by(name: name)
       if @prototype.tags[i]
-        if @prototype.tags[i].name != tag_array[i.to_s]["name"]
-          tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
+        if @prototype.tags[i].name != name
           prototype_tag = PrototypeTag.find_by(prototype_id: @prototype.id, tag_id: @prototype.tags[i].id)
           prototype_tag.update(tag_id: tag.id)
         end
       else
-        tag = Tag.find_or_create_by(name: tag_array[i.to_s]["name"])
         PrototypeTag.create(prototype_id: @prototype.id, tag_id: tag.id)
       end
     end
