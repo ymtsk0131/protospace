@@ -1,0 +1,7 @@
+= render partial: 'shared/navigator'
+
+.container.proto-list
+  .row
+    - @tags.each do |tag|
+      .col-sm-4.col-md-3.proto-content
+        = render partial: 'tags/tag', locals: { tag: tag }

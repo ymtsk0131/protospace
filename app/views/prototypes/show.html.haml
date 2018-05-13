@@ -8,10 +8,11 @@
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
-          .delete
-            = link_to '削除', prototype_path, method: :delete
-          .edit
-            = link_to '編集', edit_prototype_path, method: :get
+          - if user_signed_in? && @prototype.user_id == current_user.id
+            .delete
+              = link_to '削除', prototype_path, method: :delete
+            .edit
+              = link_to '編集', edit_prototype_path, method: :get
           .proto-user
             by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
@@ -57,10 +58,9 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - @prototype.tags.each do |tag|
+          %li
+            = link_to tag.name, tag_path(tag.id), class: "btn btn-default"
   .row.proto-comments
     .proto-comments__show
       %h4.proto-comments__show--label

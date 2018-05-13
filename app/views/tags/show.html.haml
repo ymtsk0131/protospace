@@ -1,0 +1,12 @@
+= render partial: 'shared/navigator'
+
+.container
+  .row
+    .col-sm-12.proto-content
+      = render partial: 'tags/tag', locals: { tag: @tag }
+
+#masonry-container.container.proto-list
+  .row
+    - @tag.prototype_tags.each do |prototype_tag|
+      .proto-content.masonry-box.col-sm-4.col-md-3
+        = render partial: 'prototypes/prototype_base', locals: { prototype: prototype_tag.prototype }
